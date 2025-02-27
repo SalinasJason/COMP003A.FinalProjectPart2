@@ -117,7 +117,23 @@ namespace COMP003A.FinalProjectPart2
                         }
                         break;
                     case 5: // Delete Book
-                        Console.WriteLine();
+                        Console.Write("Enter book title to delete: ");
+                        string deleteBook = Console.ReadLine();
+                        bool BookExist = false; 
+
+                        for (int i = 0; i < LibraryInventory.Count; i++)
+                        {
+                            if (LibraryInventory[i].Title == deleteBook)
+                            {
+                                LibraryInventory.RemoveAt(i);
+                                Console.WriteLine("Book deleted successfully");
+                                BookExist = true;
+                            }
+                        }
+                        if (BookExist == false)
+                        {
+                            Console.WriteLine("Book not found. Please try again.");
+                        }
                         break;
                     case 6: // Exit
                         Console.WriteLine();
