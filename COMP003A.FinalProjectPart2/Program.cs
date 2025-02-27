@@ -19,7 +19,7 @@ namespace COMP003A.FinalProjectPart2
             do
             {
                 
-                Console.WriteLine("Main Menu: ");
+                Console.WriteLine("\nMain Menu: ");
                 Console.WriteLine("1. Add Physical Book");
                 Console.WriteLine("2. Add eBook");
                 Console.WriteLine("3. View Book");
@@ -60,14 +60,61 @@ namespace COMP003A.FinalProjectPart2
                         break;
                     case 3: // View Book
                         Console.WriteLine("Displaying books");
-                        foreach (LibraryBooks PhysicalBooks in LibraryInventory)
+                        foreach (LibraryBooks Book in LibraryInventory)
                         {
-                            PhysicalBooks.DisplayBooksInfo();
+                            Book.DisplayBooksInfo();
                         }
 
                         break;
                     case 4: // Edit Book
-                        Console.WriteLine();
+                        Console.Write("\nEnter book title to edit: ");
+                        string ifBook = Console.ReadLine();
+
+                        foreach (LibraryBooks book in LibraryInventory)
+                        {
+                            if (book is PhysicalBook NewPhysicalBook)
+                            {
+                                if (NewPhysicalBook.Title == ifBook)
+                                {
+                                    Console.Write("Enter new Book title: ");
+                                    string newTitle = Console.ReadLine();
+                                    NewPhysicalBook.Title = newTitle;
+
+                                    Console.Write("Enter new author: ");
+                                    string newAuthor = Console.ReadLine();
+                                    NewPhysicalBook.Author = newAuthor;
+
+                                    Console.Write("Enter new file size: ");
+                                    int newPages = int.Parse(Console.ReadLine());
+                                    NewPhysicalBook.Pages = newPages;
+
+                                    Console.WriteLine("eBook edited successfully");
+                                }
+                            }
+                            else if (book is eBook NeweBook)
+                            {
+                                if (NeweBook.Title == ifBook)
+                                {
+                                    Console.Write("Enter new eBook title: ");
+                                    string newTitle = Console.ReadLine();
+                                    NeweBook.Title = Console.ReadLine();
+
+                                    Console.Write("Enter new author: ");
+                                    string newEbookAuthor = Console.ReadLine();
+                                    NeweBook.Author = Console.ReadLine();
+
+                                    Console.Write("Enter new file size: ");
+                                    int newEbookFileSize = int.Parse(Console.ReadLine());
+                                    NeweBook.Filesize = newEbookFileSize;
+
+                                    Console.WriteLine("eBook edited successfully");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Book not found");
+                            }
+                        }
                         break;
                     case 5: // Delete Book
                         Console.WriteLine();
