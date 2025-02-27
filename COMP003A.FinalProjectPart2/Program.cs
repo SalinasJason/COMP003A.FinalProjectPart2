@@ -27,7 +27,12 @@ namespace COMP003A.FinalProjectPart2
                 Console.WriteLine("5. Delete Book");
                 Console.WriteLine("6. Exit");
                 Console.Write("Enter your choice: ");
-                choice = int.Parse(Console.ReadLine());
+
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+                }
+                catch { }
 
                 // Switch Statement
                 switch (choice)
@@ -42,8 +47,12 @@ namespace COMP003A.FinalProjectPart2
                         Console.Write("Enter number of pages: ");
                         int UserInputPages = int.Parse(Console.ReadLine());
 
-                        PhysicalBook physicalBook = new PhysicalBook(UserInputBook, UserInputAuthor, UserInputPages);
-                        LibraryInventory.Add(physicalBook);
+                        try
+                        {
+                            PhysicalBook physicalBook = new PhysicalBook(UserInputBook, UserInputAuthor, UserInputPages);
+                            LibraryInventory.Add(physicalBook);
+                        }
+                        catch { }
                         break;
                     case 2: // Add eBook
                         Console.Write("Enter ebook title: ");
@@ -55,91 +64,116 @@ namespace COMP003A.FinalProjectPart2
                         Console.Write("Enter file size: ");
                         int UserInputFilesize = int.Parse(Console.ReadLine());
 
-                        eBook ebook = new eBook(UserInputeBook, UserInputeAuthor, UserInputFilesize);
-                        LibraryInventory.Add(ebook);
+                        try
+                        {
+                            eBook ebook = new eBook(UserInputeBook, UserInputeAuthor, UserInputFilesize);
+                            LibraryInventory.Add(ebook);
+                        }
+                        catch { }
                         break;
                     case 3: // View Book
-                        Console.WriteLine("Displaying books");
-                        foreach (LibraryBooks Book in LibraryInventory)
+                        if (LibraryInventory.Count > 0)
                         {
-                            Book.DisplayBooksInfo();
+                            Console.WriteLine("Displaying books");
+                            foreach (LibraryBooks Book in LibraryInventory)
+                            {
+                                Book.DisplayBooksInfo();
+                            }
                         }
-
+                        else
+                        {
+                            Console.WriteLine("No books are stored to view");
+                        }
                         break;
                     case 4: // Edit Book
-                        Console.Write("\nEnter book title to edit: ");
-                        string ifBook = Console.ReadLine();
-
-                        foreach (LibraryBooks book in LibraryInventory)
+                        if (LibraryInventory.Count > 0)
                         {
-                            if (book is PhysicalBook NewPhysicalBook)
+                            Console.Write("\nEnter book title to edit: ");
+                            string ifBook = Console.ReadLine();
+
+                            foreach (LibraryBooks book in LibraryInventory)
                             {
-                                if (NewPhysicalBook.Title == ifBook)
+                                if (book is PhysicalBook NewPhysicalBook)
                                 {
-                                    Console.Write("Enter new Book title: ");
-                                    string newTitle = Console.ReadLine();
-                                    NewPhysicalBook.Title = newTitle;
+                                    if (NewPhysicalBook.Title == ifBook)
+                                    {
+                                        Console.Write("Enter new Book title: ");
+                                        string newTitle = Console.ReadLine();
+                                        NewPhysicalBook.Title = newTitle;
 
-                                    Console.Write("Enter new author: ");
-                                    string newAuthor = Console.ReadLine();
-                                    NewPhysicalBook.Author = newAuthor;
+                                        Console.Write("Enter new author: ");
+                                        string newAuthor = Console.ReadLine();
+                                        NewPhysicalBook.Author = newAuthor;
 
-                                    Console.Write("Enter new file size: ");
-                                    int newPages = int.Parse(Console.ReadLine());
-                                    NewPhysicalBook.Pages = newPages;
+                                        Console.Write("Enter new file size: ");
+                                        int newPages = int.Parse(Console.ReadLine());
+                                        NewPhysicalBook.Pages = newPages;
 
-                                    Console.WriteLine("eBook edited successfully");
+                                        Console.WriteLine("eBook edited successfully");
+                                    }
                                 }
-                            }
-                            else if (book is eBook NeweBook)
-                            {
-                                if (NeweBook.Title == ifBook)
+                                else if (book is eBook NeweBook)
                                 {
-                                    Console.Write("Enter new eBook title: ");
-                                    string newTitle = Console.ReadLine();
-                                    NeweBook.Title = Console.ReadLine();
+                                    if (NeweBook.Title == ifBook)
+                                    {
+                                        Console.Write("Enter new eBook title: ");
+                                        string newTitle = Console.ReadLine();
+                                        NeweBook.Title = Console.ReadLine();
 
-                                    Console.Write("Enter new author: ");
-                                    string newEbookAuthor = Console.ReadLine();
-                                    NeweBook.Author = Console.ReadLine();
+                                        Console.Write("Enter new author: ");
+                                        string newEbookAuthor = Console.ReadLine();
+                                        NeweBook.Author = Console.ReadLine();
 
-                                    Console.Write("Enter new file size: ");
-                                    int newEbookFileSize = int.Parse(Console.ReadLine());
-                                    NeweBook.Filesize = newEbookFileSize;
+                                        Console.Write("Enter new file size: ");
+                                        int newEbookFileSize = int.Parse(Console.ReadLine());
+                                        NeweBook.Filesize = newEbookFileSize;
 
-                                    Console.WriteLine("eBook edited successfully");
+                                        Console.WriteLine("eBook edited successfully");
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Book not found");
+                                else
+                                {
+                                    Console.WriteLine("Book not found");
+                                }
                             }
                         }
+                        else
+                        {
+                            Console.WriteLine("No books are stored to edit");
+                        }
+                       
                         break;
                     case 5: // Delete Book
-                        Console.Write("Enter book title to delete: ");
-                        string deleteBook = Console.ReadLine();
-                        bool BookExist = false; 
-
-                        for (int i = 0; i < LibraryInventory.Count; i++)
+                        if (LibraryInventory.Count > 0)
                         {
-                            if (LibraryInventory[i].Title == deleteBook)
+                            Console.Write("Enter book title to delete: ");
+                            string deleteBook = Console.ReadLine();
+                            bool BookExist = false;
+
+                            for (int i = 0; i < LibraryInventory.Count; i++)
                             {
-                                LibraryInventory.RemoveAt(i);
-                                Console.WriteLine("Book deleted successfully");
-                                BookExist = true;
+                                if (LibraryInventory[i].Title == deleteBook)
+                                {
+                                    LibraryInventory.RemoveAt(i);
+                                    Console.WriteLine("Book deleted successfully");
+                                    BookExist = true;
+                                }
+                            }
+                            if (BookExist == false)
+                            {
+                                Console.WriteLine("Book not found. Please try again.");
                             }
                         }
-                        if (BookExist == false)
+                        else
                         {
-                            Console.WriteLine("Book not found. Please try again.");
+                            Console.WriteLine("No books are stored to delete");
                         }
                         break;
                     case 6: // Exit
-                        Console.WriteLine();
+                        Console.WriteLine("Exiting");
                         break;
                     default: // default
-                        Console.WriteLine();
+                        Console.WriteLine("Invalid input, Please choose from (1-6)");
                         break;
                 }
             }
