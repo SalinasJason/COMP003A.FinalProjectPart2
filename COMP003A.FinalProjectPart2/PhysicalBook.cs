@@ -23,7 +23,7 @@ namespace COMP003A.FinalProjectPart2
             { 
                 if (value <= 0)
                 {
-                    Console.WriteLine("Page number cannot be less then or 0");
+                    Console.WriteLine("Page number cannot be letters or less then zero");
                     throw new ArgumentException();
                 }
                 _pages = value;
@@ -49,7 +49,7 @@ namespace COMP003A.FinalProjectPart2
         /// </summary>
         public override void DisplayBooksInfo()
         {
-            Console.WriteLine($"Title: {Title}, Author: {Author}, Number of Pages: {Pages}");
+            Console.WriteLine($"Physical Book Title: {Title}, Author: {Author}, Number of Pages: {Pages}");
         }
     }
 }

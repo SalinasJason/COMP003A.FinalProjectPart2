@@ -22,7 +22,7 @@ namespace COMP003A.FinalProjectPart2
             {
                 if (value <= 0)
                 {
-                    Console.WriteLine("File size cannot be less then or 0");
+                    Console.WriteLine("File size cannot be letters or less then zero");
                     throw new ArgumentException();
                 }
                 _fliesize = value;
@@ -47,7 +47,7 @@ namespace COMP003A.FinalProjectPart2
         /// </summary>
         public override void DisplayBooksInfo()
         {
-            Console.WriteLine($"Title: {Title}, Author: {Author}, File size: {Filesize}");
+            Console.WriteLine($"eBook Title: {Title}, Author: {Author}, File size: {Filesize}");
         }
     }
 }
