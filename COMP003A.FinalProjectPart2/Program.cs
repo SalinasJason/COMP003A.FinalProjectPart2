@@ -103,56 +103,50 @@ namespace COMP003A.FinalProjectPart2
 
                             foreach (LibraryBooks book in LibraryInventory)
                             {
-                                if (book is PhysicalBook NewPhysicalBook)
+                                if (book is PhysicalBook NewPhysicalBook && NewPhysicalBook.Title == ifBook)
                                 {
-                                    if (NewPhysicalBook.Title == ifBook)
+                                    try
                                     {
-                                        try
-                                        {
-                                            Console.Write("Enter new Book title: ");
-                                            string newTitle = Console.ReadLine();
-                                            NewPhysicalBook.Title = newTitle;
+                                        Console.Write("Enter new Book title: ");
+                                        string newTitle = Console.ReadLine();
+                                        NewPhysicalBook.Title = newTitle;
 
-                                            Console.Write("Enter new author: ");
-                                            string newAuthor = Console.ReadLine();
-                                            NewPhysicalBook.Author = newAuthor;
+                                        Console.Write("Enter new author: ");
+                                        string newAuthor = Console.ReadLine();
+                                        NewPhysicalBook.Author = newAuthor;
 
-                                            Console.Write("Enter new number of pages: ");
-                                            int newPages = int.Parse(Console.ReadLine());
-                                            NewPhysicalBook.Pages = newPages;
-                                            Console.WriteLine("eBook edited successfully");
-                                        }
-                                        catch { }
+                                        Console.Write("Enter new number of pages: ");
+                                        int newPages = int.Parse(Console.ReadLine());
+                                        NewPhysicalBook.Pages = newPages;
+                                        Console.WriteLine("eBook edited successfully");
                                     }
+                                    catch { }
                                 }
-                                else if (book is eBook NeweBook)
+                                else if (book is eBook NeweBook && NeweBook.Title == ifBook)
                                 {
-                                    if (NeweBook.Title == ifBook)
+                                    try
                                     {
-                                        try
-                                        {
-                                            Console.Write("Enter new eBook title: ");
-                                            string newTitle = Console.ReadLine();
-                                            NeweBook.Title = Console.ReadLine();
+                                        Console.Write("Enter new eBook title: ");
+                                        string newTitle = Console.ReadLine();
 
-                                            Console.Write("Enter new author: ");
-                                            string newEbookAuthor = Console.ReadLine();
-                                            NeweBook.Author = Console.ReadLine();
+                                        Console.Write("Enter new author: ");
+                                        string newEbookAuthor = Console.ReadLine();
+                                        NeweBook.Author = Console.ReadLine();
 
-                                            Console.Write("Enter new file size: ");
-                                            int newEbookFileSize = int.Parse(Console.ReadLine());
-                                            NeweBook.Filesize = newEbookFileSize;
+                                        Console.Write("Enter new file size: ");
+                                        int newEbookFileSize = int.Parse(Console.ReadLine());
+                                        NeweBook.Filesize = newEbookFileSize;
 
-                                            Console.WriteLine("eBook edited successfully");
-                                        }
-                                        catch {}
+                                        Console.WriteLine("eBook edited successfully");
                                     }
+                                    catch { }
                                 }
                                 else
                                 {
                                     Console.WriteLine("Book not found");
                                 }
                             }
+
                         }
                         else
                         {
