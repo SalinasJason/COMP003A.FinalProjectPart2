@@ -11,14 +11,14 @@ namespace COMP003A.FinalProjectPart2
            
             int choice = 0;
 
-            // Display Main Menu
+            // Welcomes the user
             Console.WriteLine("Welcome to the Library System");
 
 
             // Do-while loop to keep menu runnning until user enters the number 6
             do
             {
-                
+                // Display Main Menu
                 Console.WriteLine("\nMain Menu: ");
                 Console.WriteLine("1. Add Physical Book");
                 Console.WriteLine("2. Add eBook");
@@ -116,10 +116,10 @@ namespace COMP003A.FinalProjectPart2
         // Method to view books
         static void ViewBooks()
         {
-            if (LibraryInventory.Count > 0)
+            if (LibraryInventory.Count > 0) // Checks if the list has any books and if it does excute the code
             {
                 Console.WriteLine("Displaying books");
-                foreach (LibraryBooks Book in LibraryInventory)
+                foreach (LibraryBooks Book in LibraryInventory) // Iterates through each book in the list
                 {
                     Book.DisplayBooksInfo();
                 }
@@ -133,15 +133,15 @@ namespace COMP003A.FinalProjectPart2
         // Method to edit book
         static void EditBook()
         {
-            if (LibraryInventory.Count > 0)
+            if (LibraryInventory.Count > 0) // Checks if the list has any books and if it does excute the code
             {
                 Console.Write("\nEnter book title to edit: ");
                 string ifBook = Console.ReadLine();
                 bool ifBookExist = false;
 
-                foreach (LibraryBooks book in LibraryInventory)
+                foreach (LibraryBooks book in LibraryInventory) // Iterates through each book in the list
                 {
-                    if (book is PhysicalBook NewPhysicalBook && NewPhysicalBook.Title == ifBook)
+                    if (book is PhysicalBook NewPhysicalBook && NewPhysicalBook.Title == ifBook) // Checks if the book is Physical and it if matchs the title
                     {
                         try
                         {
@@ -161,7 +161,7 @@ namespace COMP003A.FinalProjectPart2
                         }
                         catch { }
                     }
-                    else if (book is eBook NeweBook && NeweBook.Title == ifBook)
+                    else if (book is eBook NeweBook && NeweBook.Title == ifBook) // Checks if the book is Ebook and it matchs the title
                     {
                         try
                         {
@@ -183,7 +183,7 @@ namespace COMP003A.FinalProjectPart2
                         catch { }
                     }
                 }
-                if (ifBookExist == false)
+                if (ifBookExist == false) // If book is still false excute code
                 {
                     Console.WriteLine("Book not found");
                 }
@@ -199,22 +199,22 @@ namespace COMP003A.FinalProjectPart2
         // Method to delete book
         static void DeleteBook()
         {
-            if (LibraryInventory.Count > 0)
+            if (LibraryInventory.Count > 0) // Checks if the list has any books and if it does excute the code
             {
                 Console.Write("Enter book title to delete: ");
                 string deleteBook = Console.ReadLine();
                 bool BookExist = false;
 
-                for (int i = 0; i < LibraryInventory.Count; i++)
+                for (int i = 0; i < LibraryInventory.Count; i++) // Iterates through each book in the list
                 {
-                    if (LibraryInventory[i].Title == deleteBook)
+                    if (LibraryInventory[i].Title == deleteBook) // Checks if book title matches the title to be deleted
                     {
                         LibraryInventory.RemoveAt(i);
                         Console.WriteLine("Book deleted successfully");
                         BookExist = true;
                     }
                 }
-                if (BookExist == false)
+                if (BookExist == false) // If book is still false excute code
                 {
                     Console.WriteLine("Book not found. Please try again.");
                 }
