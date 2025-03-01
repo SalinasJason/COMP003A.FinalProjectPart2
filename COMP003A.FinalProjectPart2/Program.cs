@@ -137,6 +137,7 @@ namespace COMP003A.FinalProjectPart2
             {
                 Console.Write("\nEnter book title to edit: ");
                 string ifBook = Console.ReadLine();
+                bool ifBookExist = false;
 
                 foreach (LibraryBooks book in LibraryInventory)
                 {
@@ -155,7 +156,8 @@ namespace COMP003A.FinalProjectPart2
                             Console.Write("Enter new number of pages: ");
                             int newPages = int.Parse(Console.ReadLine());
                             NewPhysicalBook.Pages = newPages;
-                            Console.WriteLine("eBook edited successfully");
+                            Console.WriteLine("Physical book edited successfully");
+                            ifBookExist = true;
                         }
                         catch { }
                     }
@@ -164,24 +166,26 @@ namespace COMP003A.FinalProjectPart2
                         try
                         {
                             Console.Write("Enter new eBook title: ");
-                            string newTitle = Console.ReadLine();
+                            string newEBookTitle = Console.ReadLine();
+                            NeweBook.Title = newEBookTitle;
 
                             Console.Write("Enter new author: ");
                             string newEbookAuthor = Console.ReadLine();
-                            NeweBook.Author = Console.ReadLine();
+                            NeweBook.Author = newEbookAuthor;
 
                             Console.Write("Enter new file size: ");
                             int newEbookFileSize = int.Parse(Console.ReadLine());
                             NeweBook.Filesize = newEbookFileSize;
 
                             Console.WriteLine("eBook edited successfully");
+                            ifBookExist = true;
                         }
                         catch { }
                     }
-                    else
-                    {
-                        Console.WriteLine("Book not found");
-                    }
+                }
+                if (ifBookExist == false)
+                {
+                    Console.WriteLine("Book not found");
                 }
 
             }
@@ -190,6 +194,7 @@ namespace COMP003A.FinalProjectPart2
                 Console.WriteLine("No books are stored to edit");
             }
         }
+
 
         // Method to delete book
         static void DeleteBook()
